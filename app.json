@@ -1,0 +1,25 @@
+{
+  "name": "Image upload bot",
+  "description": "A bot to upload telegram images to telegraph",
+  "repository": "https://github.com/CW4RR10R/Image-UploadBot",
+  "logo": "https://telegra.ph/file/33adaf8d6c398edf81967.jpg",
+  "keywords": ["telegram", "telegraph", "imageuploader","telegram bot"],
+  "env": {
+     "BOT_TOKEN": {
+      "description": "Your Bot token from @Botfather",
+      "value": ""
+    },
+    "API_ID": {
+      "description": "Your API_ID from https://my.telegram.org/apps ",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Your API_HASH from https://my.telegram.org/apps",
+      "value": ""
+    },
+   "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
