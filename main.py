@@ -1,7 +1,11 @@
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 import os, shutil
 from creds import my
 from telegraph import upload_file
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
 
 TGraph = Client(
     "Image upload bot",
@@ -11,11 +15,11 @@ TGraph = Client(
 )
 
 
-@TGraph.on_message(Filters.command("start"))
+@TGraph.on_message(filters.command("start"))
 async def start(client, message):
     await message.reply_text(f"Hello {message.from_user.first_name},\nIm telegram to telegra.ph image uploader bot by @W4RR10R", True)
     
-@TGraph.on_message(Filters.photo)
+@TGraph.on_message(filters.photo)
 async def getimage(client, message):
     tmp = os.path.join("downloads",str(message.chat.id))
     if not os.path.isdir(tmp):

@@ -1,3 +1,4 @@
-https://github.com/pyrogram/pyrogram/archive/asyncio.zip
-telegraph
+pyrogram>=1.0.0
+telegraph==1.4.1
 tgcrypto
+python-dotenv
