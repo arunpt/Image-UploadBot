@@ -1,4 +1,5 @@
 import os
+import uuid
 import shutil
 import logging
 from pyrogram import Client, filters
@@ -12,7 +13,7 @@ TGraph = Client(
     "Image upload bot",
     bot_token=Credentials.BOT_TOKEN,
     api_id=Credentials.API_ID,
-    api_hash=Credentials.API_HASH
+    api_hash=Credentials.API_HASH,
 )
 
 
@@ -29,12 +30,12 @@ async def getimage(client, message):
     tmp = os.path.join("downloads", str(message.chat.id))
     if not os.path.isdir(tmp):
         os.makedirs(tmp)
-    imgdir = tmp + "/" + str(message.message_id) + ".jpg"
+    img_path = os.path.join(tmp, str(uuid.uuid4()) + ".jpg")
     dwn = await message.reply_text("Downloading...", True)
-    await client.download_media(message=message, file_name=imgdir)
+    img_path = await client.download_media(message=message, file_name=img_path)
     await dwn.edit_text("Uploading...")
     try:
-        response = upload_file(imgdir)
+        response = upload_file(img_path)
     except Exception as error:
         await dwn.edit_text(f"Oops something went wrong\n{error}")
         return
