@@ -8,6 +8,7 @@ from pyrogram import Client, filters
 from creds import Credentials
 from telegraph import upload_file
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 
 logging.basicConfig(level=logging.INFO)
 
@@ -19,6 +20,7 @@ TGraph = Client(
     api_hash=Credentials.API_HASH,
 )
 
+UPDATES_CHANNEL = os.environ.get('UPDATES_CHANNEL', 'Discovery_Updates')
 home_text = """
 Hi, [{}](tg://user?id={})
 I am Telegram to telegra.ph image uploader bot.
@@ -43,6 +45,42 @@ about_text = """
 
 @TGraph.on_message(filters.command("start"))
 async def start(client, message):
+    ## Doing Force Sub 🤣
+    update_channel = UPDATES_CHANNEL
+    if update_channel:
+        try:
+            user = await client.get_chat_member(update_channel, message.chat.id)
+            if user.status == "kicked":
+               await client.send_message(
+                   chat_id=message.chat.id,
+                   text="Sorry Sir, You are Banned!\n\Now Your Can't Use Me. Contact my [Support Group](https://t.me/linux_repo).",
+                   parse_mode="markdown",
+                   disable_web_page_preview=True
+               )
+               return
+        except UserNotParticipant:
+            await client.send_message(
+                chat_id=message.chat.id,
+                text="**Please Join My Updates Channel to use this Bot!**",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                        ]
+                    ]
+                ),
+                parse_mode="markdown"
+            )
+            return
+        except Exception:
+            await client.send_message(
+                chat_id=message.chat.id,
+                text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+                parse_mode="markdown",
+                disable_web_page_preview=True
+            )
+            return
+    ##
     await message.reply_text(
         f"Hi, {message.from_user.mention}.\nI am Telegram to telegra.ph image uploader bot.",
         reply_markup=InlineKeyboardMarkup(
@@ -63,6 +101,42 @@ async def start(client, message):
 
 @TGraph.on_message(filters.photo)
 async def getimage(client, message):
+    ## Doing Force Sub 🤣
+    update_channel = UPDATES_CHANNEL
+    if update_channel:
+        try:
+            user = await client.get_chat_member(update_channel, message.chat.id)
+            if user.status == "kicked":
+               await client.send_message(
+                   chat_id=message.chat.id,
+                   text="Sorry Sir, You are Banned!\n\Now Your Can't Use Me. Contact my [Support Group](https://t.me/linux_repo).",
+                   parse_mode="markdown",
+                   disable_web_page_preview=True
+               )
+               return
+        except UserNotParticipant:
+            await client.send_message(
+                chat_id=message.chat.id,
+                text="**Please Join My Updates Channel to use this Bot!**",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                        ]
+                    ]
+                ),
+                parse_mode="markdown"
+            )
+            return
+        except Exception:
+            await client.send_message(
+                chat_id=message.chat.id,
+                text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+                parse_mode="markdown",
+                disable_web_page_preview=True
+            )
+            return
+    ##
     tmp = os.path.join("downloads", str(message.chat.id))
     if not os.path.isdir(tmp):
         os.makedirs(tmp)
@@ -123,9 +197,9 @@ async def go_to_home(_, query):
     await query.answer()
 
 @TGraph.on_callback_query(dynamic_data_filter("closeit"))
-def closebruh(_, query):
-    query.message.delete()
-    query.answer()
+async def closeme(_, query):
+    await query.message.delete()
+    await query.answer()
 ##
 
 TGraph.run()
