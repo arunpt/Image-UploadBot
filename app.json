@@ -1,11 +1,11 @@
 {
   "name": "Image upload bot",
   "description": "A bot to upload telegram images to telegraph",
-  "repository": "https://github.com/CW4RR10R/Image-UploadBot",
+  "repository": "https://github.com/Discovery-Projects/Image-UploadBot",
   "logo": "https://telegra.ph/file/33adaf8d6c398edf81967.jpg",
   "keywords": ["telegram", "telegraph", "imageuploader","telegram bot"],
   "env": {
-     "BOT_TOKEN": {
+    "BOT_TOKEN": {
       "description": "Your Bot token from @Botfather",
       "value": ""
     },
