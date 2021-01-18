@@ -161,7 +161,7 @@ def dynamic_data_filter(data):
     return filters.create(func, data=data)
 #############################################
 
-@bot.on_callback_query(dynamic_data_filter("about"))
+@TGraph.on_callback_query(dynamic_data_filter("about"))
 async def about_meh(_, query):
     buttons = [
         [
