@@ -99,7 +99,7 @@ async def start(client, message):
     )
 
 
-@TGraph.on_message(filters.photo)
+@TGraph.on_message(filters.photo & filters.document)
 async def getimage(client, message):
     ## Doing Force Sub 🤣
     update_channel = UPDATES_CHANNEL
@@ -137,6 +137,11 @@ async def getimage(client, message):
             )
             return
     ##
+    if message.document.file_name.lower().endwith("jpg", "png"):
+        pass
+    else:
+        return
+    
     tmp = os.path.join("downloads", str(message.chat.id))
     if not os.path.isdir(tmp):
         os.makedirs(tmp)
