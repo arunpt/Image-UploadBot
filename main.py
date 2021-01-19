@@ -4,6 +4,7 @@ import os
 import uuid
 import shutil
 import logging
+import traceback
 from pyrogram import Client, filters
 from creds import Credentials
 from telegraph import upload_file
@@ -99,7 +100,7 @@ async def start(client, message):
     )
 
 
-@TGraph.on_message(filters.photo & filters.document)
+@TGraph.on_message(filters.private & (filters.photo | filters.document))
 async def getimage(client, message):
     ## Doing Force Sub 🤣
     update_channel = UPDATES_CHANNEL
@@ -137,6 +138,9 @@ async def getimage(client, message):
             )
             return
     ##
+    if message.document:
+        if not message.document.file_name.endswith(".jpg"):
+            return
     tmp = os.path.join("downloads", str(message.chat.id))
     if not os.path.isdir(tmp):
         os.makedirs(tmp)
