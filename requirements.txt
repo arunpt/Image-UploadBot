@@ -1,3 +1,6 @@
 pyrogram
 telegraph==1.4.1
 tgcrypto
+https://github.com/Tinche/aiofiles/archive/master.zip
+dnspython
+motor
