@@ -20,12 +20,12 @@ TGraph = Client(
 @TGraph.on_message(filters.command("start"))
 async def start(client, message):
     await message.reply_text(
-        f"Hello {message.from_user.first_name},\nIm telegram to telegra.ph image uploader bot by @W4RR10R",
+        f"Hello {message.from_user.first_name},\nIm telegram any under 5MB media to telegra.ph image uploader bot by @W4RR10R",
         True,
     )
 
 
-@TGraph.on_message(filters.photo)
+@TGraph.on_message(filters.media)
 async def getimage(client, message):
     tmp = os.path.join("downloads", str(message.chat.id))
     if not os.path.isdir(tmp):
