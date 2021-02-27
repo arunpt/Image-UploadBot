@@ -213,7 +213,7 @@ async def getimage(client, message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id)
     ## --- Force Sub --- ##
-    update_channel = UPDATES_CHANNEL
+    update_channel = Credentials.UPDATES_CHANNEL
     if update_channel:
         try:
             user = await client.get_chat_member(update_channel, message.chat.id)
