@@ -45,19 +45,9 @@ if Credentials.ABOUT_MSG:
     about_text = Credentials.ABOUT_MSG
 else:
     about_text = """
-🤖 **My Name:** [Telegraph Image Bot](https://t.me/AH_TelegraphBot)
+🤖 **My Name:** [Telegraph Image Bot](https://t.me/xDUploadTG_Bot)
 
-📝 **Language:** [Python 3](https://www.python.org)
-
-📚 **Framework:** [Pyrogram](https://github.com/pyrogram/pyrogram) & [Telegraph](https://pypi.org/project/telegraph)
-
-📡 **Hosted on:** [Heroku](https://heroku.com/deploy?template=https://github.com/Discovery-Projects/Image-UploadBot/tree/master)
-
-👨‍💻 **Developer:** @AbirHasan2005
-
-👥 **Support Group:** [Linux Repositories](https://t.me/linux_repo)
-
-📢 **Updates Channel:** [Discovery Projects](https://t.me/Discovery_Updates)
+📢 **My Channel:** [Join My Channel](https://t.me/ExploitzBots)
 """
 async def send_msg(user_id, message):
     try:
@@ -90,7 +80,7 @@ async def start(client, message):
             if user.status == "kicked":
                await client.send_message(
                    chat_id=message.chat.id,
-                   text="Sorry Sir, You are Banned!\nNow Your Can't Use Me. Contact my [Support Group](https://t.me/linux_repo).",
+                   text="Sorry Sir, You are Banned!\nNow Your Can't Use Me. Contact my [Supporter](https://t.me/Madboi_xD).",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                )
@@ -98,11 +88,11 @@ async def start(client, message):
         except UserNotParticipant:
             await client.send_message(
                 chat_id=message.chat.id,
-                text="**Please Join My Updates Channel to use this Bot!**",
+                text="**Please Join My Channel to use this Bot!**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                            InlineKeyboardButton("Join Channel", url=f"https://t.me/ExploitzBots")
                         ]
                     ]
                 ),
@@ -112,7 +102,7 @@ async def start(client, message):
         except Exception:
             await client.send_message(
                 chat_id=message.chat.id,
-                text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+                text="Something went Wrong. Contact my [Supporter](https://t.me/Madboi_xD).",
                 parse_mode="markdown",
                 disable_web_page_preview=True
             )
@@ -122,8 +112,8 @@ async def start(client, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(text="Updates Channel", url="https://t.me/Discovery_Updates"),
-                    InlineKeyboardButton(text="Support Group", url="https://t.me/linux_repo")
+                    InlineKeyboardButton(text="Updates Channel", url="https://t.me/ExploitzBots"),
+                    InlineKeyboardButton(text="Supporter", url="https://t.me/Madboi_xD")
                 ],
                 [
                     InlineKeyboardButton("About", callback_data="about")
@@ -220,7 +210,7 @@ async def getimage(client, message):
             if user.status == "kicked":
                await client.send_message(
                    chat_id=message.chat.id,
-                   text="Sorry Sir, You are Banned!\nNow Your Can't Use Me. Contact my [Support Group](https://t.me/linux_repo).",
+                   text="Sorry Sir, You are Banned!\nNow Your Can't Use Me. Contact my [Supporter](https://t.me/Madboi_xD).",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                )
@@ -232,7 +222,7 @@ async def getimage(client, message):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/{update_channel}")
+                            InlineKeyboardButton("Join Updates Channel", url=f"https://t.me/ExploitzBots")
                         ]
                     ]
                 ),
@@ -242,7 +232,7 @@ async def getimage(client, message):
         except Exception:
             await client.send_message(
                 chat_id=message.chat.id,
-                text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+                text="Something went Wrong. Contact my [Supporter](https://t.me/Madboi_xD).",
                 parse_mode="markdown",
                 disable_web_page_preview=True
             )
@@ -291,8 +281,8 @@ async def about_meh(_, query):
 async def go_to_home(_, query):
     buttons = [
         [
-            InlineKeyboardButton("Support Group", url="http://t.me/linux_repo"),
-            InlineKeyboardButton("Updates Channel", url="http://t.me/Discovery_Updates")
+            InlineKeyboardButton("Support Group", url="http://t.me/ExploitzBotsChat"),
+            InlineKeyboardButton("Updates Channel", url="http://t.me/ExploitzBots")
         ],
         [
             InlineKeyboardButton("About", callback_data="about")
