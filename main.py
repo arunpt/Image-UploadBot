@@ -10,7 +10,7 @@ from telegraph import upload_file
 logging.basicConfig(level=logging.INFO)
 
 
-TGraph = Client(
+tgraph = Client(
     "Image upload bot",
     bot_token=Credentials.BOT_TOKEN,
     api_id=Credentials.API_ID,
@@ -18,15 +18,15 @@ TGraph = Client(
 )
 
 
-@TGraph.on_message(filters.command("start"))
+@tgraph.on_message(filters.command("start"))
 async def start(client, message):
     await message.reply_text(
-        text=f"Hello {message.from_user.first_name},\nIm telegram to telegra.ph image uploader bot by @W4RR10R",
+        text=f"Hello {message.from_user.mention},\nI'm A telegram to telegra.ph image uploader bot by @W4RR10R",
         disable_web_page_preview=True
     )
 
 
-@TGraph.on_message(filters.photo)
+@tgraph.on_message(filters.photo)
 async def getimage(client, message):
     tmp = os.path.join("downloads", str(message.chat.id))
     if not os.path.isdir(tmp):
@@ -48,4 +48,4 @@ async def getimage(client, message):
     shutil.rmtree(tmp, ignore_errors=True)
 
 
-TGraph.run()
+tgraph.run()
