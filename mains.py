@@ -19,7 +19,7 @@ tgraph = Client(
 @tgraph.on_message(filters.command("start"))
 async def start(client, message):
     await message.reply_text(
-        text=f"Hello {message.from_user.mention},\nI'm a telegram to telegra.ph image uploader bot by @W4RR10R",
+        text=f"Hello {message.from_user.mention},\nI'm a telegram to telegra.ph image uploader bot by @sparkysunny",
         disable_web_page_preview=True
     )
 
